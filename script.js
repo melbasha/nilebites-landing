@@ -1,33 +1,21 @@
-const titles = [
-  "Make Your Project Shine Online 🚀",
-  "Fast Websites. Modern Design.",
-  "Turn Your Idea Into a Professional Website ✨",
-];
+const navToggle = document.getElementById("navToggle");
+const navLinks = document.getElementById("navLinks");
 
-let titleIndex = 0;
-let charIndex = 0;
-const heroTitle = document.getElementById("hero-title");
+navToggle.addEventListener("click", () => {
+  navLinks.classList.toggle("open");
+});
 
-function typeTitle() {
-  if (charIndex < titles[titleIndex].length) {
-    heroTitle.textContent += titles[titleIndex].charAt(charIndex);
-    charIndex++;
-    setTimeout(typeTitle, 70);
-  } else {
-    setTimeout(() => {
-      heroTitle.textContent = "";
-      charIndex = 0;
-      titleIndex = (titleIndex + 1) % titles.length;
-      typeTitle();
-    }, 2000);
-  }
-}
-
-typeTitle();
-
-document.getElementById("startBtn").addEventListener("click", function (e) {
-  e.preventDefault();
-  document.querySelector("#contact").scrollIntoView({
-    behavior: "smooth",
+document.querySelectorAll(".nav-links a").forEach((link) => {
+  link.addEventListener("click", () => {
+    navLinks.classList.remove("open");
   });
+});
+
+const navbar = document.querySelector(".navbar");
+window.addEventListener("scroll", () => {
+  if (window.scrollY > 40) {
+    navbar.style.background = "rgba(15, 32, 39, 0.95)";
+  } else {
+    navbar.style.background = "rgba(15, 32, 39, 0.75)";
+  }
 });
